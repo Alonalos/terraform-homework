@@ -19,8 +19,8 @@ resource "aws_s3_bucket" "bucket4" {
   bucket = "alona-b4"
 }
 /*
-//terraform import aws_s3_bucket.bucket3 alona-b3
-erraform import aws_s3_bucket.bucket4 alona-b4
+terraform import aws_s3_bucket.bucket3 alona-b3
+terraform import aws_s3_bucket.bucket4 alona-b4
 */
 
  resource "aws_iam_user" "hw" {
