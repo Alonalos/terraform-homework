@@ -9,12 +9,16 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_instance" "web" {
-  ami           = var.AMI_id
+  ami           = var.aws_ami
   instance_type = var.instance_type
-  availability_zone = var.availability_zone
-  key_name = var.key_name
+  subnet_id = aws_subnet.main.id
+  key_name = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
+  user_data = file("apache.sh")
   count = var.instance_count
+}
 
+output ec2 {
+    value = aws_instance.web[0].public_ip
 }
 
